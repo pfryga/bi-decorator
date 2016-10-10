@@ -1,6 +1,6 @@
 {
   "name": "bi-params-decorator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "url decorator with bi parameters",
   "main": "src/class/biDecorator.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/pfryga/slug-creator.git"
+    "url": "git://github.com/pfryga/bi-decorator.git"
   },
   "keywords": [
     "bi-params",
