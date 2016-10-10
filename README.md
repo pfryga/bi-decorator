@@ -9,7 +9,7 @@ Node.js v6.0.0 or greater
 
 Installation
 ```
-npm install bi-decorator
+npm install bi-params-decorator
 ```
 
 Init object and get slug

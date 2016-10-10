@@ -1,6 +1,6 @@
 {
   "name": "bi-params-decorator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "url decorator with bi parameters",
   "main": "src/class/biDecorator.js",
   "scripts": {
