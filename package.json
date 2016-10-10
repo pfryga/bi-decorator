@@ -1,0 +1,29 @@
+{
+  "name": "bi-params-decorator",
+  "version": "1.0.0",
+  "description": "url decorator with bi parameters",
+  "main": "src/class/biDecorator.js",
+  "scripts": {
+    "test": "multi='spec=- mocha-junit-reporter=-' MOCHA_FILE=./unit-tests.xml mocha -R mocha-multi \"src/**/tests/*.js\" --require 'babel-register'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pfryga/slug-creator.git"
+  },
+  "keywords": [
+    "bi",
+    "decorator"
+  ],
+  "author": "piotr.fryga@allegrogroup.com",
+  "license": "MIT",
+  "dependencies": {
+    "append-query": "^1.1.0",
+    "mocha": "^2.4.5",
+    "mocha-junit-reporter": "^1.0.0",
+    "mocha-multi": "^0.7.0",
+    "should": "^7.0.0"
+  },
+  "devDependencies": {
+    "babel-register": "^6.7.2"
+  }
+}
