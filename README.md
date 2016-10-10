@@ -12,9 +12,9 @@ Installation
 npm install bi-params-decorator
 ```
 
-Init object and get slug
+Init object and decorate url with parameters
 ```
-import BiDecorator from 'bi-decorator'
+import BiDecorator from 'bi-decorator';
 
 let biDecorator = new BiDecorator({
     bi_s: 'internal',
@@ -22,7 +22,7 @@ let biDecorator = new BiDecorator({
     bi_m: 'automotive_txt'
 });
 
-let url = 'http://allegro.pl/dzial/motoryzacja'
+let url = 'http://allegro.pl/dzial/motoryzacja';
 let resultUrl = biDecorator.decorateWithTags(url);
 // resultUrl equals 'http://allegro.pl/dzial/motoryzacja?bi_s=internal&bi_c=123&bi_m=automotive_txt'
 ```
