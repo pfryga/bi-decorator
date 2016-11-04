@@ -19,7 +19,8 @@ import BiDecorator from 'bi-decorator';
 let biDecorator = new BiDecorator({
     bi_s: 'internal',
     bi_c: 111,
-    bi_m: 'automotive_txt'
+    bi_m: 'automotive_txt',
+    bi_term: 'some_tags'
 });
 
 let url = 'http://allegro.pl/dzial/motoryzacja';
