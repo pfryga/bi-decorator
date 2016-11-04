@@ -7,20 +7,21 @@ class BiDecorator {
         this.tags = {
             bi_s: props.bi_s,
             bi_c: props.bi_c,
-            bi_m: props.bi_m
+            bi_m: props.bi_m,
+            bi_term: props.bi_term
         };
     }
 
     getBiParameters() {
-        let biParamsKeys = Object.keys(this.tags);
-        let biParams = {};
+        const biParamsKeys = Object.keys(this.tags);
+        const biParams = {};
 
         biParamsKeys.forEach(paramKey => {
             if (!this.tags[paramKey]) {
                 return;
             }
 
-            let simpleBiTag = {};
+            const simpleBiTag = {};
             simpleBiTag[paramKey] = this.tags[paramKey];
 
             Object.assign(biParams, simpleBiTag);
@@ -30,7 +31,7 @@ class BiDecorator {
     }
 
     decorateWithTags(link) {
-        let biParameters = this.getBiParameters();
+        const biParameters = this.getBiParameters();
 
         if (!Object.keys(biParameters).length) {
             return link;

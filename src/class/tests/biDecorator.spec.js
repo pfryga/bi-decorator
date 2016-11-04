@@ -7,36 +7,37 @@ require('should');
 describe('biDecorator class', function () {
     it('should decorate link with given tags', function () {
         // given
-        let props = {
+        const props = {
             bi_s: 'internal',
             bi_c: 123,
-            bi_m: 'automotive_txt'
+            bi_m: 'automotive_txt',
+            bi_term: 'some_tags'
         };
-        let link = 'http://allegro.pl/dzial/motoryzacja';
-        let linkWithArgs = 'http://allegro.pl/dzial/motoryzacja?arg=1';
+        const link = 'http://allegro.pl/dzial/motoryzacja';
+        const linkWithArgs = 'http://allegro.pl/dzial/motoryzacja?arg=1';
 
-        let biDecorator = new BiDecorator(props);
+        const biDecorator = new BiDecorator(props);
 
         // when
-        let decoratedLink = biDecorator.decorateWithTags(link);
-        let decoratedLinkWithArgs = biDecorator.decorateWithTags(linkWithArgs);
+        const decoratedLink = biDecorator.decorateWithTags(link);
+        const decoratedLinkWithArgs = biDecorator.decorateWithTags(linkWithArgs);
 
         // then
-        decoratedLink.should.be.equal('http://allegro.pl/dzial/motoryzacja?bi_s=internal&bi_c=123&bi_m=automotive_txt');
-        decoratedLinkWithArgs.should.be.equal('http://allegro.pl/dzial/motoryzacja?arg=1&bi_s=internal&bi_c=123&bi_m=automotive_txt');
+        decoratedLink.should.be.equal('http://allegro.pl/dzial/motoryzacja?bi_s=internal&bi_c=123&bi_m=automotive_txt&bi_term=some_tags');
+        decoratedLinkWithArgs.should.be.equal('http://allegro.pl/dzial/motoryzacja?arg=1&bi_s=internal&bi_c=123&bi_m=automotive_txt&bi_term=some_tags');
     });
 
     it('should do not decorate link with undefined tags', function () {
         // given
-        let props = {
+        const props = {
             bi_s: 'internal',
             bi_c: undefined
         };
-        let link = 'http://allegro.pl/dzial/motoryzacja';
-        let biDecorator = new BiDecorator(props);
+        const link = 'http://allegro.pl/dzial/motoryzacja';
+        const biDecorator = new BiDecorator(props);
 
         // when
-        let decoratedLink = biDecorator.decorateWithTags(link);
+        const decoratedLink = biDecorator.decorateWithTags(link);
 
         // then
         decoratedLink.should.be.equal('http://allegro.pl/dzial/motoryzacja?bi_s=internal');
@@ -44,13 +45,13 @@ describe('biDecorator class', function () {
 
     it('should do not decorate link if there are empty parameters', function () {
         // given
-        let props = {};
-        let link = 'http://allegro.pl/dzial/motoryzacja';
+        const props = {};
+        const link = 'http://allegro.pl/dzial/motoryzacja';
 
-        let biDecorator = new BiDecorator(props);
+        const biDecorator = new BiDecorator(props);
 
         // when
-        let decoratedLink = biDecorator.decorateWithTags(link);
+        const decoratedLink = biDecorator.decorateWithTags(link);
 
         // then
         decoratedLink.should.be.equal('http://allegro.pl/dzial/motoryzacja');
