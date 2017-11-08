@@ -56,7 +56,7 @@ describe('biDecorator class', () => {
         expect(decoratedLink).to.equal('http://allegro.pl/dzial/motoryzacja');
     });
 
-    it('should decorate link with duplicated query params', () => {
+    it('should decorate link with multi-value query params', () => {
         // given
         const params = { bi_s: 'internal' };
         const link = 'http://allegro.pl/dzial/motoryzacja?department=1&department=2&space=1';
