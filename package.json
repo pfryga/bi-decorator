@@ -16,7 +16,6 @@
   ],
   "author": "piotr.fryga@allegrogroup.com",
   "dependencies": {
-    "append-query": "2.0.1",
     "query-string": "^5.0.1"
   },
   "devDependencies": {
