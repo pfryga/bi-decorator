@@ -6,6 +6,9 @@
   "scripts": {
     "test": "multi='spec=- mocha-junit-reporter=-' MOCHA_FILE=./unit-tests.xml mocha -R mocha-multi \"src/**/tests/*.js\" --require 'babel-register'"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/pfryga/bi-decorator.git"
