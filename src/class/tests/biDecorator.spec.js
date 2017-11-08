@@ -1,13 +1,10 @@
-'use strict';
-
 const BiDecorator = require('../biDecorator');
+const {expect} = require('chai');
 
-require('should');
-
-describe('biDecorator class', function () {
-    it('should decorate link with given tags', function () {
+describe('biDecorator class', () => {
+    it('should decorate link with given tags', () => {
         // given
-        const props = {
+        const params = {
             bi_s: 'internal',
             bi_c: 123,
             bi_m: 'automotive_txt',
@@ -16,44 +13,74 @@ describe('biDecorator class', function () {
         const link = 'http://allegro.pl/dzial/motoryzacja';
         const linkWithArgs = 'http://allegro.pl/dzial/motoryzacja?arg=1';
 
-        const biDecorator = new BiDecorator(props);
+        const biDecorator = new BiDecorator(params);
 
         // when
         const decoratedLink = biDecorator.decorateWithTags(link);
         const decoratedLinkWithArgs = biDecorator.decorateWithTags(linkWithArgs);
 
         // then
-        decoratedLink.should.be.equal('http://allegro.pl/dzial/motoryzacja?bi_s=internal&bi_c=123&bi_m=automotive_txt&bi_term=some_tags');
-        decoratedLinkWithArgs.should.be.equal('http://allegro.pl/dzial/motoryzacja?arg=1&bi_s=internal&bi_c=123&bi_m=automotive_txt&bi_term=some_tags');
+        expect(decoratedLink)
+            .to.equal(`${link}?bi_c=123&bi_m=automotive_txt&bi_s=internal&bi_term=some_tags`);
+        expect(decoratedLinkWithArgs)
+            .to.equal(`${link}?arg=1&bi_c=123&bi_m=automotive_txt&bi_s=internal&bi_term=some_tags`);
     });
 
-    it('should do not decorate link with undefined tags', function () {
+    it('should not decorate link with undefined tags', () => {
         // given
-        const props = {
+        const params = {
             bi_s: 'internal',
             bi_c: undefined
         };
         const link = 'http://allegro.pl/dzial/motoryzacja';
-        const biDecorator = new BiDecorator(props);
+        const biDecorator = new BiDecorator(params);
 
         // when
         const decoratedLink = biDecorator.decorateWithTags(link);
 
         // then
-        decoratedLink.should.be.equal('http://allegro.pl/dzial/motoryzacja?bi_s=internal');
+        expect(decoratedLink).to.equal('http://allegro.pl/dzial/motoryzacja?bi_s=internal');
     });
 
-    it('should do not decorate link if there are empty parameters', function () {
+    it('should not decorate link for empty params object', () => {
         // given
-        const props = {};
+        const params = {};
         const link = 'http://allegro.pl/dzial/motoryzacja';
 
-        const biDecorator = new BiDecorator(props);
+        const biDecorator = new BiDecorator(params);
 
         // when
         const decoratedLink = biDecorator.decorateWithTags(link);
 
         // then
-        decoratedLink.should.be.equal('http://allegro.pl/dzial/motoryzacja');
+        expect(decoratedLink).to.equal('http://allegro.pl/dzial/motoryzacja');
+    });
+
+    it('should decorate link with multi-value query params', () => {
+        // given
+        const params = { bi_s: 'internal' };
+        const link = 'http://allegro.pl/dzial/motoryzacja?department=1&department=2&space=1';
+        const biDecorator = new BiDecorator(params);
+
+        // when
+        const decoratedLink = biDecorator.decorateWithTags(link);
+
+        // then
+        expect(decoratedLink)
+            .to.equal('http://allegro.pl/dzial/motoryzacja?bi_s=internal&department=1&department=2&space=1');
+    });
+
+    it('should decorate link with multiple values of defined tag', () => {
+        // given
+        const params = { bi_s: ['internal', 'external'] };
+        const link = 'http://allegro.pl/dzial/motoryzacja?department=1';
+        const biDecorator = new BiDecorator(params);
+
+        // when
+        const decoratedLink = biDecorator.decorateWithTags(link);
+
+        // then
+        expect(decoratedLink)
+            .to.equal('http://allegro.pl/dzial/motoryzacja?bi_s=internal&bi_s=external&department=1');
     });
 });
