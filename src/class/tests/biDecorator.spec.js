@@ -26,7 +26,7 @@ describe('biDecorator class', () => {
             .to.equal(`${link}?arg=1&bi_c=123&bi_m=automotive_txt&bi_s=internal&bi_term=some_tags`);
     });
 
-    it('should do not decorate link with undefined tags', () => {
+    it('should not decorate link with undefined tags', () => {
         // given
         const params = {
             bi_s: 'internal',
@@ -42,7 +42,7 @@ describe('biDecorator class', () => {
         expect(decoratedLink).to.equal('http://allegro.pl/dzial/motoryzacja?bi_s=internal');
     });
 
-    it('should do not decorate link for empty params object', () => {
+    it('should not decorate link for empty params object', () => {
         // given
         const params = {};
         const link = 'http://allegro.pl/dzial/motoryzacja';
