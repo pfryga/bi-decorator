@@ -1,6 +1,6 @@
 {
   "name": "bi-params-decorator",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "url decorator with bi parameters",
   "main": "src/class/biDecorator.js",
   "scripts": {
@@ -15,12 +15,13 @@
     "decorator"
   ],
   "author": "piotr.fryga@allegrogroup.com",
-  "license": "MIT",
   "dependencies": {
-    "append-query": "^1.1.0"
+    "append-query": "2.0.1",
+    "query-string": "^5.0.1"
   },
   "devDependencies": {
     "babel-register": "^6.7.2",
+    "chai": "^4.1.2",
     "mocha": "^2.4.5",
     "mocha-junit-reporter": "^1.0.0",
     "mocha-multi": "^0.7.0",

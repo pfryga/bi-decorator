@@ -1,43 +1,23 @@
-'use strict';
-
-let appendQuery = require('append-query');
+const queryString = require('query-string');
 
 class BiDecorator {
-    constructor(props) {
-        this.tags = {
-            bi_s: props.bi_s,
-            bi_c: props.bi_c,
-            bi_m: props.bi_m,
-            bi_term: props.bi_term
-        };
-    }
-
-    getBiParameters() {
-        const biParamsKeys = Object.keys(this.tags);
-        const biParams = {};
-
-        biParamsKeys.forEach(paramKey => {
-            if (!this.tags[paramKey]) {
-                return;
-            }
-
-            const simpleBiTag = {};
-            simpleBiTag[paramKey] = this.tags[paramKey];
-
-            Object.assign(biParams, simpleBiTag);
-        });
-
-        return biParams;
+    constructor(params) {
+        this.params = params;
     }
 
     decorateWithTags(link) {
-        const biParameters = this.getBiParameters();
+        const baseUrl = link.split('?')[0];
+        const linkQueryString = link.slice(baseUrl.length);
 
-        if (!Object.keys(biParameters).length) {
-            return link;
-        }
+        let destinationQueryString = queryString.stringify(Object.assign(
+            {},
+            queryString.parse(linkQueryString),
+            this.params,
+        ));
 
-        return appendQuery(link, biParameters);
+        destinationQueryString = destinationQueryString.length ? `?${destinationQueryString}` : destinationQueryString;
+
+        return baseUrl + destinationQueryString;
     }
 }
 
