@@ -2,7 +2,13 @@ const queryString = require('query-string');
 
 class BiDecorator {
     constructor(params) {
-        this.params = params;
+        this.params = Object.keys(params).reduce((acumulator, key) => {
+            if (params[key]) {
+                acumulator[key] = params[key];
+            }
+
+            return acumulator;
+        }, {});
     }
 
     decorateWithTags(link) {
