@@ -111,4 +111,18 @@ describe('biDecorator class', () => {
     expect(decoratedLink)
       .to.equal('http://allegro.pl/dzial/motoryzacja?bi_s=true&department=1');
   });
+
+  it('should not decorate link with not allowed parameter', () => {
+    // given
+    const params = { test: '1', foo: '', bar: 'bar-1' };
+    const link = 'http://allegro.pl/dzial/motoryzacja?department=1';
+    const biDecorator = new BiDecorator(params);
+
+    // when
+    const decoratedLink = biDecorator.decorateWithTags(link);
+
+    // then
+    expect(decoratedLink)
+      .to.equal('http://allegro.pl/dzial/motoryzacja?department=1');
+  });
 });
