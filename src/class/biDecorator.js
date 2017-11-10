@@ -13,6 +13,10 @@ class BiDecorator {
     }
 
     decorateWithTags(link) {
+        if (!Object.keys(this.params).length) {
+            return link;
+        }
+
         const baseUrl = link.split('?')[0];
         const linkQueryString = link.slice(baseUrl.length);
 
