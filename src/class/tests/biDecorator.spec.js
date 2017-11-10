@@ -86,30 +86,28 @@ describe('biDecorator class', () => {
 
   it('should not decorate link with empty parameters', () => {
     // given
-    const params = { bi_s: '', bi_m: '', bi_c: [] };
-    const link = 'http://allegro.pl/dzial/motoryzacja?department=1';
+    const params = { bi_s: '', bi_m: '', bi_c: '' };
+    const link = 'http://allegro.pl/dzial/motoryzacja?department=1&department=2';
     const biDecorator = new BiDecorator(params);
 
     // when
     const decoratedLink = biDecorator.decorateWithTags(link);
 
     // then
-    expect(decoratedLink)
-      .to.equal('http://allegro.pl/dzial/motoryzacja?department=1');
+    expect(decoratedLink).to.equal(link);
   });
 
   it('should not override parameter with empty value', () => {
     // given
-    const params = { bi_s: '', bi_m: '', bi_c: [] };
-    const link = 'http://allegro.pl/dzial/motoryzacja?department=1&bi_s=true';
+    const params = { bi_s: '', bi_m: '', bi_c: '' };
+    const link = 'http://allegro.pl/dzial/motoryzacja?department=1&department=2&bi_s=true';
     const biDecorator = new BiDecorator(params);
 
     // when
     const decoratedLink = biDecorator.decorateWithTags(link);
 
     // then
-    expect(decoratedLink)
-      .to.equal('http://allegro.pl/dzial/motoryzacja?bi_s=true&department=1');
+    expect(decoratedLink).to.equal(link);
   });
 
   it('should not decorate link with not allowed parameter', () => {
